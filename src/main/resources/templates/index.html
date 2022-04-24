@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row" style="margin-top: 20px">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">整合多登录系统 - LoginSystem</div>
+                <div class="panel-body" style="height: 500px">
+                    <div>
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" id="loginTabs">
+                            <li class="active"><a href="#email-tab" onclick="closeCamera()">邮箱验证码登录</a></li>
+                            <li><a href="#phone-tab" onclick="closeCamera()">手机验证码登录</a></li>
+                            <li><a href="#third-tab" onclick="closeCamera()">第三方登录</a></li>
+                            <li><a href="#face-tab" onclick="openCamera()">人脸登录</a></li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="email-tab">
+                                <form action="loginEmail">
+                                <div class="row">
+                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-10" style="margin-top: 50px">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">邮箱：</span>
+                                            <input value="isxuewei@qq.com" id="email" required name="email" type="email" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-10" style="margin-top: 30px">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="code" required placeholder="验证码">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" onclick="sendEmailCode()" type="button" id="email-code">获取验证码</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-10" style="margin-top: 60px">
+                                        <button type="submit" class="col-xs-12 btn btn-primary">登录 / 注册</button>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="phone-tab">
+                                <form action="loginSms">
+                                <div class="row">
+                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-10" style="margin-top: 50px">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">手机号：</span>
+                                            <input value="17879540430" id="phone" name="phone" required type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-10" style="margin-top: 30px">
+                                        <div class="input-group">
+                                            <input type="text" name="code" required class="form-control" placeholder="验证码">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" onclick="sendSmsCode()" type="button" id="phone-code">获取验证码</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-10" style="margin-top: 60px">
+                                        <button type="submit" class="col-xs-12 btn btn-primary">登录 / 注册</button>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="third-tab">
+                                <div class="row" style="margin-top: 20px">
+                                    <div class="col-xs-2">
+                                        <a href="loginByQQ" class="thumbnail">
+                                            <img src="https://moti-cloud-v2.oss-cn-beijing.aliyuncs.com/QQ-circle-fill.png" alt="QQ登录">
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <a href="loginByWeiBo" class="thumbnail">
+                                            <img src="https://moti-cloud-v2.oss-cn-beijing.aliyuncs.com/weibo%20%281%29.png" alt="微博登录">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="face-tab">
+                                <div class="row" style="margin-top: 20px">
+                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-10">
+                                        <video style="width: 100%" id="face-video" autoplay></video>
+                                        <canvas id="face-canvas" width="480" height="320" style="display: none;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            $('#loginTabs a').click(function (e) {
+                                e.preventDefault();
+                                $(this).tab('show')
+                            })
+                        </script>
+                    </div>
+                </div>
+                <div class="panel-footer">整合邮件验证码、手机验证码、QQ第三方、微博第三方、人脸等多种登录方式。</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="utils/reg.js"></script>
+<script src="layer/layer.js"></script>
+<script src="js/face-login.js"></script>
+<script src="js/login.js"></script>

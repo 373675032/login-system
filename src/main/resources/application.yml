@@ -1,0 +1,68 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  # 数据源
+  datasource:
+    username: root
+    password: 【修改自此配置】
+    url: jdbc:mysql://127.0.0.1:3306/login_system?serverTimezone=Hongkong&useAffectedRows=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  # 配置邮件任务
+  mail:
+    username: 373675032@qq.com
+    password: 
+    host: smtp.qq.com
+    port: 465
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+
+# 打印Mysql查询日志
+logging:
+  level:
+    com.baijia.umetric.dao.mapper: debug
+
+# mybatis插件打印日志，打印查询结果
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+weibo:
+  client_id: 【修改自此配置】
+  secret: 【修改自此配置】
+  redirect: http://xuewei.world/test/weibo
+
+qq:
+  app_id: 【修改自此配置】
+  app_key: 【修改自此配置】
+  redirect: http://www.xuewei.world/test/qq
+
+sms:
+  app-id: 【修改自此配置】
+  app-key: 【修改自此配置】
+  template-id: 【修改自此配置】
+  sign: 【修改自此配置】
+  interval-min: 1
+  valid-min: 5
+
+baidu:
+  aip:
+    app-id: 【修改自此配置】
+    app-key: 【修改自此配置】
+    secret-key: 【修改自此配置】
+    conn-timeout: 2000
+    socket-timeout: 6【修改自此配置】
+    accept-score: 90
